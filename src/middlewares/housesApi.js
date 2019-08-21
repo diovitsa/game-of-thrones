@@ -1,9 +1,14 @@
 import { ERROR, START, SUCCESS } from "../constants";
+import { head } from 'lodash';
 
 export default store => next => async action => {
   const { callAPI, type, index, ...rest } = action;
 
-  if (!callAPI) return next(action);
+  const currentPage = head([...store.getState().houses.housesList.filter((housesPage) => {
+    return housesPage.index === store.getState().page;
+  })]);
+
+  if (!callAPI || currentPage) return next(action);
 
   store.dispatch({
     ...rest,

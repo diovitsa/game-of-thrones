@@ -2,21 +2,17 @@ import React, { useEffect } from 'react';
 import { View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchHousesData, nextPage, prevPage } from '../../actions/ac';
-import { head } from 'lodash';
 import House from '../house/House';
-import { articlesLoadingSelector } from '../../selectors';
+import { articlesLoadingSelector, housesSelector } from '../../selectors';
+import LoadingBar from '../loading-bar/LoadingBar';
 
-function HousesList({ fetchHousesData, houses, page, nextPage, prevPage }) {
+function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, isLoading }) {
   useEffect(() => {
     fetchHousesData(page);
   }, [page]);
 
-  const currentPage = head(houses.filter((housesPage) => {
-    return housesPage.index === page;
-  }));
-
-  const housesList = currentPage
-    ? currentPage.data.map((house, index) => {
+  const housesList = houses
+    ? houses.data.map((house, index) => {
       return <House house={house} id={index} key={index}/>
     })
     : null;
@@ -29,7 +25,7 @@ function HousesList({ fetchHousesData, houses, page, nextPage, prevPage }) {
 
   return (
     <View style={{ marginTop: 50 }}>
-      {housesList}
+      {isLoading ? <LoadingBar/> : <View>{housesList}</View>}
       <Button disabled={page === 1} onPress={() => handleButtonClick(false)} title={'Prev Page'}/>
       <Button onPress={() => handleButtonClick(true)} title={'Next Page'}/>
     </View>
@@ -43,7 +39,7 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => ({
-  houses: state.houses,
+  houses: housesSelector(state),
   page: state.page,
   isLoading: articlesLoadingSelector(state)
 });

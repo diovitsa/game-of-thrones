@@ -1,7 +1,8 @@
 import { applyMiddleware, createStore } from 'redux'
 import reducer from '../reducers';
-import api from '../middlewares/api';
+import housesApi from '../middlewares/housesApi';
+import characterApi from '../middlewares/characterApi';
 
-const enhancer = applyMiddleware(api);
+const enhancer = applyMiddleware(characterApi, housesApi);
 
 export default createStore(reducer, enhancer);
