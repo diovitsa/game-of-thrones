@@ -1,41 +1,37 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import Character from '../character/Character';
-import { fetchCharacter } from '../../actions/ac';
+import { fetchCharacters } from '../../actions/ac';
 import { connect } from 'react-redux';
+import LoadingBar from '../loading-bar/LoadingBar';
+import { charactersSelector } from '../../selectors';
 
-function CharacterList({ house, characters, fetchCharacter }) {
+function CharacterList({ house, characters, fetchCharacters }) {
 
   useEffect(() => {
-    house.swornMembers.map(member => {
-      fetchCharacter(member, house);
-    });
+    fetchCharacters(house);
   }, []);
 
-  const currentCharacters = characters.characterList.filter(charactersBlock => {
-    return charactersBlock.id === house.name;
-  });
+  const charactersList = characters
+    ? characters.data.map(character => {
+      return <Character character={character}/>
+    })
+    : null;
 
-  const charactersList = currentCharacters.map(character => {
-    return <Character character={character}/>
-  });
-
-  // console.log(charactersList);
   return (
     <View>
       <Text>Characters: </Text>
-      {charactersList}
+      {charactersList || <LoadingBar/>}
     </View>
   );
 }
 
-const mapStateToProps = state => ({
-  characters: state.characters,
-  // isLoading: articlesLoadingSelector(state)
+const mapStateToProps = (state, ownProps) => ({
+  characters: charactersSelector(state, ownProps),
 });
 
 const mapDispatchToProps = {
-  fetchCharacter,
+  fetchCharacters,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterList);

@@ -1,4 +1,4 @@
-import { API, FETCH_ALL_HOUSES, NEXT_PAGE, PREV_PAGE, FETCH_CHARACTER } from '../constants';
+import { API, FETCH_ALL_HOUSES, NEXT_PAGE, PREV_PAGE, FETCH_ALL_CHARACTERS } from '../constants';
 
 export const fetchHousesData = index => ({
   type: FETCH_ALL_HOUSES,
@@ -6,10 +6,11 @@ export const fetchHousesData = index => ({
   index
 });
 
-export const fetchCharacter = (characterAPI, house) => ({
-  type: FETCH_CHARACTER,
-  characterCallAPI: `${characterAPI}`,
-  houseName: house.name
+export const fetchCharacters = ({ swornMembers, name }) => ({
+  type: FETCH_ALL_CHARACTERS,
+  charactersCallAPI: swornMembers,
+  houseName: name,
+  charactersCall: true
 });
 
 export const nextPage = () => ({

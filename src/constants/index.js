@@ -1,5 +1,5 @@
 export const FETCH_ALL_HOUSES = 'FETCH_ALL_HOUSES';
-export const FETCH_CHARACTER = 'FETCH_CHARACTER';
+export const FETCH_ALL_CHARACTERS = 'FETCH_ALL_CHARACTERS';
 
 export const START = '_START';
 export const SUCCESS = '_SUCCESS';

@@ -1,17 +1,29 @@
 import React from 'react';
-import { View } from 'react-native';
-import { Provider } from 'react-redux';
-import store from './src/store/store';
-import HousesList from './src/components/houses-list/HousesList';
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import CharacterDetails from './src/components/character-details/CharacterDetails';
+import NavigationService from './src/services/NavigationService';
+import Root from './src/components/Root/Root'
 
 function App() {
   return (
-    <Provider store={store}>
-      <View>
-        <HousesList/>
-      </View>
-    </Provider>
+    <AppContainer
+      ref={navigatorRef => {
+        NavigationService.setTopLevelNavigator(navigatorRef);
+      }}
+    />
   );
 }
+
+const TopLevelNavigator = createStackNavigator(
+  {
+    Home: Root,
+    CharacterDetails,
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
+
+const AppContainer = createAppContainer(TopLevelNavigator);
 
 export default App;

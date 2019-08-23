@@ -5,5 +5,9 @@ export const housesSelector = state => {
     return housesPage.index === state.page;
   })]);
 };
-
+export const charactersSelector = (state, ownProps) => {
+  return head(state.characters.charactersList.filter(charactersBlock => {
+    return charactersBlock.id === ownProps.house.name;
+  }));
+};
 export const articlesLoadingSelector = state => state.houses.isLoading;

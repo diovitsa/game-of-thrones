@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Button } from 'react-native';
+import { ScrollView, Button, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchHousesData, nextPage, prevPage } from '../../actions/ac';
 import House from '../house/House';
@@ -24,11 +24,11 @@ function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, isLoadi
   }
 
   return (
-    <View style={{ marginTop: 50 }}>
+    <ScrollView style={{ marginTop: 50 }}>
       {isLoading ? <LoadingBar/> : <View>{housesList}</View>}
       <Button disabled={page === 1} onPress={() => handleButtonClick(false)} title={'Prev Page'}/>
       <Button onPress={() => handleButtonClick(true)} title={'Next Page'}/>
-    </View>
+    </ScrollView>
   );
 }
 
