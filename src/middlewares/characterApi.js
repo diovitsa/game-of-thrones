@@ -1,15 +1,14 @@
 import { ERROR, START, SUCCESS } from "../constants";
+import { DataService } from '../services/DataService';
 
 export default store => next => action => {
-  const { charactersCallAPI, charactersCall, type, index, houseName, ...rest } = action;
+  const { charactersCallAPI, charactersAPICall, type, index, houseName, ...rest } = action;
 
   const isAlreadyLoaded = store.getState().characters.charactersList.some(characterList => {
     return characterList.id === houseName;
   });
 
-  if (!charactersCall || isAlreadyLoaded) {
-    return next(action);
-  }
+  if (!charactersAPICall || isAlreadyLoaded) return next(action);
 
   store.dispatch({
     ...rest,
@@ -18,12 +17,10 @@ export default store => next => action => {
   });
 
   const arrayOfPromises = charactersCallAPI.map(api => {
-    return fetch(api);
+    return DataService.getCharactersList(api);
   });
 
   Promise.all(arrayOfPromises)
-    .then(values => values.map(value => value.json()))
-    .then(values => Promise.all(values))
     .then((values => {
       store.dispatch({
         ...rest,
