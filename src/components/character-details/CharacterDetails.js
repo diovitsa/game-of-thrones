@@ -1,10 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
 
 function CharacterDetails({ navigation: { state: { params: { character } } } }) {
-  const titles = character.titles.map(title => {
-    return <Text>{title} </Text>
-  });
 
   return (
     <View>
@@ -20,11 +17,23 @@ function CharacterDetails({ navigation: { state: { params: { character } } } }) 
       <Text>
         Born: {character.born || 'no info'}
       </Text>
-      <Text>
-        Titles: {titles}
-      </Text>
+      <FlatList
+        data={character.titles}
+        renderItem={({ item }) => <Text>{item}</Text>}
+        ListHeaderComponentStyle={styles.title}
+        ListHeaderComponent={<Text style={{ fontWeight: 'bold' }}>Titles: </Text>}
+        keyExtractor={(item) => item}
+      />
     </View>
   );
 }
+
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 19,
+    fontWeight: 'bold',
+  }
+});
 
 export default CharacterDetails;

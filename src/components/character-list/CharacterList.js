@@ -13,8 +13,8 @@ function CharacterList({ house, characters, fetchCharacters }) {
   }, []);
 
   const charactersList = characters
-    ? characters.data.map(character => {
-      return <Character character={character}/>
+    ? characters.data.map((character, index) => {
+      return <Character key={index} character={character}/>
     })
     : null;
 

@@ -14,7 +14,7 @@ function House({ house }) {
 
   return (
     <View>
-      <Text style={{ color: 'blue', fontSize: 20 }} onPress={() => setOpen(!isOpen)}>{house.name}</Text>
+      <Text style={{ color: 'blue', fontSize: 20 , textAlign: 'center'}} onPress={() => setOpen(!isOpen)}>{house.name}</Text>
       {houseDetails}
     </View>
   );
