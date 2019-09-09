@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import LoadingBar from '../loading-bar/LoadingBar';
 import { charactersSelector } from '../../selectors';
 
-function CharacterList({ house, characters, fetchCharacters }) {
+export function CharacterList({ house, characters, fetchCharacters }) {
 
   useEffect(() => {
     fetchCharacters(house);

@@ -7,7 +7,7 @@ import { articlesLoadingSelector, housesSelector } from '../../selectors';
 import LoadingBar from '../loading-bar/LoadingBar';
 import { CustomButton } from '../custom-button/CustomButton';
 
-function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, isLoading }) {
+export function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, isLoading }) {
   useEffect(() => {
     fetchHousesData(page);
   }, [page]);
@@ -28,8 +28,8 @@ function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, isLoadi
     <ScrollView>
       {isLoading ? <LoadingBar/> : <View>{housesList}</View>}
       <View style={styles.flex}>
-        <CustomButton disabled={page === 1} onPress={() => handleButtonClick(false)} title={'Prev Page'}/>
-        <CustomButton onPress={() => handleButtonClick(true)} title={'Next Page'}/>
+        <CustomButton id={'prevPageBtn'} disabled={page === 1} onPress={() => handleButtonClick(false)} title={'Prev Page'} />
+        <CustomButton id={'nextPageBtn'} onPress={() => handleButtonClick(true)} title={'Next Page'} />
       </View>
     </ScrollView>
   );

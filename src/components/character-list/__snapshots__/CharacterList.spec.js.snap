@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CharacterList when characters are loaded should show loading bar 1`] = `
+<View>
+  <Text>
+    Characters: 
+  </Text>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "blue",
+          "fontSize": 14,
+        }
+      }
+    >
+      testName1
+    </Text>
+  </View>
+  <View
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "color": "blue",
+          "fontSize": 14,
+        }
+      }
+    >
+      testName2
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`CharacterList when loading in progress should show loading bar 1`] = `
+<View>
+  <Text>
+    Characters: 
+  </Text>
+  <Text>
+    Loading in progress...
+  </Text>
+</View>
+`;
