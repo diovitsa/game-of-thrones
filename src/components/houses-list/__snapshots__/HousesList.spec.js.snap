@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HousesList on data loaded should render properly 1`] = `
+Array [
+  <View>
+    <House
+      house={
+        Object {
+          "name": "testName1",
+        }
+      }
+      id={0}
+    />
+    <House
+      house={
+        Object {
+          "name": "testName2",
+        }
+      }
+      id={1}
+    />
+  </View>,
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <CustomButton
+      disabled={true}
+      id="prevPageBtn"
+      onPress={[Function]}
+      title="Prev Page"
+    />
+    <CustomButton
+      id="nextPageBtn"
+      onPress={[Function]}
+      title="Next Page"
+    />
+  </View>,
+]
+`;
+
+exports[`HousesList when data still loading should render properly 1`] = `
+Array [
+  <LoadingBar />,
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <CustomButton
+      disabled={true}
+      id="prevPageBtn"
+      onPress={[Function]}
+      title="Prev Page"
+    />
+    <CustomButton
+      id="nextPageBtn"
+      onPress={[Function]}
+      title="Next Page"
+    />
+  </View>,
+]
+`;

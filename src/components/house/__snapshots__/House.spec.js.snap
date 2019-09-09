@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`House when closed should render properly 1`] = `
+Array [
+  <Text
+    id="header"
+    onPress={[Function]}
+    style={
+      Object {
+        "color": "blue",
+        "fontSize": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    test house name
+  </Text>,
+  null,
+]
+`;
+
+exports[`House when opened after clicking on it should render properly 1`] = `
+Array [
+  <Text
+    id="header"
+    onPress={[Function]}
+    style={
+      Object {
+        "color": "blue",
+        "fontSize": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    test house name
+  </Text>,
+  <View
+    id="housesDetails"
+  >
+    <Text>
+      Words: 
+      testWords
+    </Text>
+    <Memo(Connect(CharacterList))
+      house={
+        Object {
+          "name": "test house name",
+          "words": "testWords",
+        }
+      }
+    />
+  </View>,
+]
+`;
