@@ -1,16 +1,16 @@
 import { ERROR, START, SUCCESS } from "../constants";
 import { DataService } from '../services/DataService';
 
-export default store => next => action => {
-  const { charactersCallAPI, charactersAPICall, type, index, houseName, ...rest } = action;
+export default ({ getState, dispatch }) => next => action => {
+  const { charactersCallAPI, isCharactersAPICall, type, index, houseName, ...rest } = action;
 
-  const isAlreadyLoaded = store.getState().characters.charactersList.some(characterList => {
+  const isAlreadyLoaded = getState().characters.charactersList.some(characterList => {
     return characterList.id === houseName;
   });
 
-  if (!charactersAPICall || isAlreadyLoaded) return next(action);
+  if (!isCharactersAPICall || isAlreadyLoaded) return next(action);
 
-  store.dispatch({
+  dispatch({
     ...rest,
     ownName: houseName,
     type: type + START
@@ -20,21 +20,19 @@ export default store => next => action => {
     return DataService.getCharactersList(api);
   });
 
-  Promise.all(arrayOfPromises)
-    .then((values => {
-      store.dispatch({
+  return Promise.all(arrayOfPromises)
+    .then((values => dispatch({
         ...rest,
         response: values,
         ownName: houseName,
         type: type + SUCCESS,
-      });
-    }))
-    .catch(error => {
-      store.dispatch({
+      })
+    ))
+    .catch(error => dispatch({
         ...rest,
         error,
         type: type + ERROR,
-      });
-    });
+      })
+    );
 
 };

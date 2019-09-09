@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { ScrollView, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchHousesData, nextPage, prevPage } from '../../actions/ac';
+import { fetchHousesData } from '../../actions/houses';
+import { nextPage, prevPage } from '../../actions/paging';
 import House from '../house/House';
 import { articlesLoadingSelector, housesSelector } from '../../selectors';
 import LoadingBar from '../loading-bar/LoadingBar';
@@ -28,8 +29,9 @@ export function HousesList({ fetchHousesData, houses, page, nextPage, prevPage, 
     <ScrollView>
       {isLoading ? <LoadingBar/> : <View>{housesList}</View>}
       <View style={styles.flex}>
-        <CustomButton id={'prevPageBtn'} disabled={page === 1} onPress={() => handleButtonClick(false)} title={'Prev Page'} />
-        <CustomButton id={'nextPageBtn'} onPress={() => handleButtonClick(true)} title={'Next Page'} />
+        <CustomButton id={'prevPageBtn'} disabled={page === 1} onPress={() => handleButtonClick(false)}
+                      title={'Prev Page'}/>
+        <CustomButton id={'nextPageBtn'} onPress={() => handleButtonClick(true)} title={'Next Page'}/>
       </View>
     </ScrollView>
   );

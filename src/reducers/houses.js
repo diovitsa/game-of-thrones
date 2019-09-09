@@ -1,9 +1,9 @@
-import { FETCH_ALL_HOUSES, FETCH_CHARACTER, START, SUCCESS } from '../constants';
+import { FETCH_ALL_HOUSES, START, SUCCESS } from '../constants';
 
 const defaultHouses = { isLoading: true, housesList: [] };
 
 export default (houses = defaultHouses, action) => {
-  const { type, payload, response, index, ownName } = action;
+  const { type, response, index } = action;
 
   switch (type) {
     case FETCH_ALL_HOUSES + START:

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import Character from '../character/Character';
-import { fetchCharacters } from '../../actions/ac';
+import { fetchCharacters } from '../../actions/characters';
 import { connect } from 'react-redux';
 import LoadingBar from '../loading-bar/LoadingBar';
 import { charactersSelector } from '../../selectors';
